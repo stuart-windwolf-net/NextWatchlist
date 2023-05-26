@@ -1,0 +1,9 @@
+
+    {
+        "typescript.suggestionActions.enabled": false,
+        "dotnet-test-explorer.testProjectPath": "API.Tests",
+        "editor.tabSize": 4,
+        "editor.fontSize": 14,
+        "terminal.integrated.fontSize": 12,
+        "window.zoomLevel": 1.2,
+    }
