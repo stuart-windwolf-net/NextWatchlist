@@ -10,7 +10,7 @@ import CompanySearchInputMui from "../../components/CompanySearchInputMui";
 //import agent from "../api/agent";
 import { CompanyHeader } from "../../models/companyHeader";
 import { listCompanies } from "../../lib/api/CompanyApi";
-import ServerError from "../server-error";
+import Server_Error from "../server-error";
 
 
 export interface CompanyHeaderProps {
@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     // Get an array of CompanyHeaders from the Axios Agent
     let isError: boolean = false;
     let companyHeaders: Array<CompanyHeader> | null = null;
- 
+
     try {
         companyHeaders = await listCompanies();
         console.log("companyHeaders = await agent.CompanyHeaders.list() - ", Array.isArray(companyHeaders));
@@ -36,6 +36,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     } catch (error) {
         console.log(error);
         isError = true;
+
     }
 
     return {        
@@ -46,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 export default function CompanyHeaderDashboard(
     { companyHeaders}:any, 
-    { isError}: any 
+    { isError}: any
 ) {    
     console.log ("CompanyHeaderDashboard: Array.isArray(companyHeaders) Index.tsx: ", Array.isArray(companyHeaders));
  
@@ -54,7 +55,8 @@ export default function CompanyHeaderDashboard(
     console.log ("CompanyHeaderDashboard: Array.isArray(headers) Index.tsx: ", Array.isArray(headers));
 
     if (isError)
-        return <ServerError />;
+        //return <ServerError errorMessage={"Error retrieving Company Headers "}/>;
+        return <Server_Error error={{message:`Error loading Company Headers`}} />;
     if (headers === null || headers?.length === 0) {
         return  <EmptyWatchList headers={headers}/>;
     } else {

@@ -7,15 +7,11 @@ import {createCompany} from '../lib/api/CompanyApi'
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Paper, IconButton, InputAdornment, Box } from '@mui/material';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
-//import CompanyHeaderList from './CompanyHeaderList';
 import { CompanyHeaderProps } from '../pages/companies';
-//import agent, {revalidate} from '../pages/api/agent';
-//import CompanyDetails from '../pages/companyDetails';
-
 
 export default function CompanySearchInputMui({headers}:CompanyHeaderProps): React.ReactElement {
 	const companyHeaders:Array<CompanyHeader> = headers;
-	console.log('CompanySearchInputMui companyHeaders isArray: ', Array.isArray(companyHeaders));
+	//console.log('CompanySearchInputMui companyHeaders isArray: ', Array.isArray(companyHeaders));
 
 	const router = useRouter();
 
@@ -30,7 +26,7 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 	}
 
 	async function addCompany() {
-		code ? console.log(`In - addCompany() code: ${code}`) : console.log('In - addCompany() code: is null'); 
+		//code ? console.log(`In - addCompany() code: ${code}`) : console.log('In - addCompany() code: is null'); 
 
 		// Validate first
 		if (code.length < 1 || code.length > 6) {
@@ -48,7 +44,7 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 
 		const head: CompanyHeader | undefined = companyHeaders.find(ch => ch.symbol.toUpperCase() === code.toUpperCase());
 		if (head) {
-			console.log("CompanySearchInputMui head?.symbol: ", head?.symbol);
+			//console.log("CompanySearchInputMui head?.symbol: ", head?.symbol);
 
 			toast.error(`A duplicate entry for ${code.toUpperCase()}, already exists!`);
 			return;
@@ -64,7 +60,7 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 		}
 
 		await createCompany(header).then(() => {
-			console.log("CompanySearchInputMui code: ", code);
+			//console.log("CompanySearchInputMui code: ", code);
 			setCode('');
 			router.reload();
 
@@ -73,8 +69,8 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 	}
 	
 	async function handleInputClick(e: MouseEvent<HTMLButtonElement>) {
-		console.log ('e.currentTarget.value: ', e.currentTarget.value);
-		console.log ('e.target', e.target);
+		// console.log ('e.currentTarget.value: ', e.currentTarget.value);
+		// console.log ('e.target', e.target);
 
 		setCode(e.currentTarget.value);
 		await addCompany();
@@ -83,8 +79,8 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 	async function handleInputKeyPress(e: KeyboardEvent<HTMLInputElement>) {
 		if (e.key === 'Enter') {
 			e.preventDefault();
-			console.log ('e.currentTarget.value: ', e.currentTarget.value);
-			console.log ('e.target', e.target);
+			// console.log ('e.currentTarget.value: ', e.currentTarget.value);
+			// console.log ('e.target', e.target);
 	
 			setCode(e.currentTarget.value);
 			await addCompany();
@@ -123,7 +119,7 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 						),
 						endAdornment: (
 							<InputAdornment position="end">
-								<IconButton
+								<IconButton									
 									type="button"
 									sx={{ p: 5 }} aria-label="search"
 									onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleInputClick(e)}
@@ -137,7 +133,7 @@ export default function CompanySearchInputMui({headers}:CompanyHeaderProps): Rea
 					variant="standard"
 					placeholder='ASX Symbol'
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e)}
-					onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => handleInputKeyPress(e)}
+					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleInputKeyPress(e)}
 					value={code}
 				/>
 			</Box>

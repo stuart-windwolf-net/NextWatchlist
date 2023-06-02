@@ -2,11 +2,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export interface Props {
+export interface LoadingComponentProps {
 	message: string;
 }
 
-export default function LoadingComponent({ message = 'Loading...'}: Props) {
+export default function LoadingComponent({ message = 'Loading...'}: LoadingComponentProps) {
 	return (
 	  <Box sx={{ display: 'flex', marginTop: 15, marginLeft: 20 }}>
 		<CircularProgress />

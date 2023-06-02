@@ -19,7 +19,7 @@ import Link from 'next/dist/client/link';
 
 const drawerWidth = 240;
 
-interface navProps {
+export interface navProps {
 	navItems:{text: string, href: string}[]
 }
 
@@ -31,7 +31,7 @@ export default function DrawerAppBar(props: navProps) {
 	};
 
 	const drawer = (
-		<Box onClick={handleDrawerToggle} 
+		<Box aria-label='appDrawer' onClick={handleDrawerToggle} 
 			sx={{ textAlign: 'center', backgroundColor:'blueviolet' }}>
 			<List>
 				{props.navItems.map((item) => (

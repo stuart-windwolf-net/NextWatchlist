@@ -1,14 +1,15 @@
 import {  Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
-import myImage from '../public/Logo.jpg'
+import marketImage from '../public/Logo.jpg'
 import {imageLoader} from "../imageLoader";
 import Head from "next/head";
 
 export default function HomePage() {
+
     return (
 		<>
 			<Head>
-				<title>Home - HomePage</title>
+				<title>Home - Company Watchlist</title>
 			</Head>
 			<Box sx={{  
 					backgroundImage:'linear-gradient(135deg, rgb(24, 42, 115) 0%, rgb(33, 138, 174) 69%, rgb(32, 167, 172) 89%)',
@@ -21,7 +22,7 @@ export default function HomePage() {
 						<Image						
 							loader={imageLoader}
 							unoptimized
-							src={myImage}
+							src={marketImage}
 							alt={'Market logo'}
 							width="100"
 							height="100"
