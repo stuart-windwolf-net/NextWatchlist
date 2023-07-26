@@ -2,7 +2,7 @@ import agent, {revalidate} from "../../pages/api/agent";
 import { CompanyHeader } from "../../models/companyHeader";
 import { Company } from "../../models/company";
 
-export const listCompanies = async ():Promise<CompanyHeader[]> => {
+export const  listCompanies = async ():Promise<CompanyHeader[]> => {
     return await agent.CompanyHeaders.list();
 }
 

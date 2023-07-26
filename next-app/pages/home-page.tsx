@@ -1,11 +1,10 @@
 import {  Box, Container, Typography } from "@mui/material";
-import Image from "next/image";
-import marketImage from '../public/Logo.jpg'
-import {imageLoader} from "../imageLoader";
+import marketImage from "../public/Logo.jpg"
+import { imageLoader } from "../imageLoader";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function HomePage() {
-
     return (
 		<>
 			<Head>
@@ -17,9 +16,9 @@ export default function HomePage() {
 				}}
 			> 
 				<Container sx={{ display: 'inline-block', marginTop: 25, marginLeft: 10 }} >
-				{/* <Stack sx={{ marginTop: 25, marginLeft:20, display: 'inline-flex'}}> */}
 					<Box sx={{ width:"150px"}}>
-						<Image						
+						<Image	
+							priority={true}					
 							loader={imageLoader}
 							unoptimized
 							src={marketImage}
@@ -32,7 +31,6 @@ export default function HomePage() {
 					<Typography variant='h2' sx={{  marginTop: 3, marginLeft: 0, paddingLeft:0, color:'white', display: 'inline-flex' }}>
 						Company Watch List
 					</Typography>
-				{/* </Stack> */}
 				</Container>
 			</Box>
 		 </>

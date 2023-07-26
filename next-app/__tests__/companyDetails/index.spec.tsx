@@ -3,7 +3,7 @@ import { setupServer } from 'msw/node'
 import { Company } from '../../models/company';
 
 // eslint-disable-next-line jest/no-mocks-import
-import { badCompany, fakeCompany } from '../../__mocks__/fakeData/Company';
+import { fakeCompany } from '../../__mocks__/fakeData/Company';
 import CompanyDetails from '../../pages/companyDetails';
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 //import { useRouter } from 'next/router';
@@ -72,7 +72,7 @@ describe('CompanyDetails', () => {
 })
 
 // eslint-disable-next-line jest/no-disabled-tests
-describe('no data leads to 404 page displaying message', () => {
+describe('no data leads to 404 page displaying "No Data Found for CPU" message', () => {
     beforeEach( async () => {
         server.use(
             rest.get<Company> ("http://localhost:5000/api/companyDetails/CPU", (req, res, ctx) => {
@@ -93,7 +93,7 @@ describe('no data leads to 404 page displaying message', () => {
         // Arrange
         render(<CompanyDetails />);
 
-        //await waitForElementToBeRemoved(screen.queryByText(/loading/i), { timeout:5000 });
+        await waitForElementToBeRemoved(screen.queryByText(/loading/i), { timeout:5000 });
    
         // Act
         const element = await screen.findByText(/No Data Found for CPU/i, undefined, { timeout:5000 });

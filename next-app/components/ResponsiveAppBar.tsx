@@ -35,7 +35,7 @@ export default function DrawerAppBar(props: navProps) {
 			sx={{ textAlign: 'center', backgroundColor:'blueviolet' }}>
 			<List>
 				{props.navItems.map((item) => (
-					<ListItem key={item.text} disablePadding>
+					<ListItem key={item.text} disablePadding id={item.text}>
 						<ListItemButton sx={{ textAlign: 'center' }}>
 							<Link style={{ textDecoration: 'none', color: 'white' }}  href={item.href}>
 								{item.text}

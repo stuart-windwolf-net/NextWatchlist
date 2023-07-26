@@ -1,13 +1,10 @@
 import React from "react";
 import { Box, Paper, Stack } from "@mui/material";
-//import { observer } from "mobx-react-lite";
 import EmptyWatchList from "../../components/EmptyWatchList";
-//import LoadingComponent from "../../components/LoadingComponent";
 import CompanyHeaderList from "../../components/CompanyHeaderList";
 
 import { GetStaticProps } from "next/types";
 import CompanySearchInputMui from "../../components/CompanySearchInputMui";
-//import agent from "../api/agent";
 import { CompanyHeader } from "../../models/companyHeader";
 import { listCompanies } from "../../lib/api/CompanyApi";
 import Server_Error from "../server-error";
@@ -17,55 +14,43 @@ export interface CompanyHeaderProps {
     headers: CompanyHeader[]
 }
 
-export interface StaticProps {
-    companyHeaders: Array<CompanyHeader>;
+export interface CompanyHeaderDashboardProps {
+    headers: Array<CompanyHeader> | null;
     isError: boolean;
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-    console.log("getStaticProps - CompanyHeaderDashboard with URL of: ", ctx.params);
-
-    // Get an array of CompanyHeaders from the Axios Agent
+export const getStaticProps: GetStaticProps = async () => {
+     // Get an array of CompanyHeaders from the Axios Agent
     let isError: boolean = false;
-    let companyHeaders: Array<CompanyHeader> | null = null;
+    let headers: Array<CompanyHeader> | null = null;
+
 
     try {
-        companyHeaders = await listCompanies();
-        console.log("companyHeaders = await agent.CompanyHeaders.list() - ", Array.isArray(companyHeaders));
- 
+        headers = await listCompanies();
     } catch (error) {
         console.log(error);
         isError = true;
-
     }
 
+    const props: CompanyHeaderDashboardProps = { headers: headers, isError: isError }
+
     return {        
-        props: { companyHeaders, isError },  
+        props  
     }
 };
 
 
 export default function CompanyHeaderDashboard(
-    { companyHeaders}:any, 
-    { isError}: any
+    props: CompanyHeaderDashboardProps
 ) {    
-    console.log ("CompanyHeaderDashboard: Array.isArray(companyHeaders) Index.tsx: ", Array.isArray(companyHeaders));
- 
-    const headers: Array<CompanyHeader> = companyHeaders;
-    console.log ("CompanyHeaderDashboard: Array.isArray(headers) Index.tsx: ", Array.isArray(headers));
+    const { headers, isError } = props;
 
-    if (isError)
-        //return <ServerError errorMessage={"Error retrieving Company Headers "}/>;
-        return <Server_Error error={{message:`Error loading Company Headers`}} />;
+    if (isError === true)
+        return <Server_Error error={{message:`Error loading Company Headers`, statusCode: '500', details: undefined}} />;
     if (headers === null || headers?.length === 0) {
-        return  <EmptyWatchList headers={headers}/>;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return  <EmptyWatchList headers={headers!}/>;
     } else {
-        // const props:CompanyHeaderProps = {
-        //     headers: headers 
-        // };
-
-        // console.log("Index.tsx props: ", headers);
-      
         return (
             <Stack>
                 <Box style={{

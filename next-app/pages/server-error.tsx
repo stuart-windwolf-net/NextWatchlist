@@ -7,21 +7,27 @@ export interface Server_ErrorProps {
 }
 
 export default function Server_Error({error = undefined}:Server_ErrorProps) {
-	console.log('Server_Error - error: ', error);
-
 	const router = useRouter();	
-	const { message, details, statusCode  } = router.query;
 
-	console.log(`Server_Error - message: ${message}, details: ${details}, statusCode: ${statusCode}`);
+	const { routeMessage, routeDetails, routeStatusCode } = router.query;
+	let message, details, statusCode;	
 
-	let errMessage:string | undefined = error?.message ? error.message : '';
-	let errDetails:string[] | undefined = error?.details ? error.details : new Array<string>();
-	let errCode:string | undefined = error?.statusCode ? error.statusCode : '';
+	if (error !== undefined && error !== null) {
+		message = error.message;
+		details = error.details;
+		statusCode = error.statusCode;		
+	}
 
-	// Where they exist values pushed by router supercede those entered as params 
-	if (message !== undefined && !Array.isArray(message)) errMessage = message;
-	if (details !== undefined && Array.isArray(details)) errDetails = details;
-	if (statusCode !== undefined && !Array.isArray(statusCode)) errCode = statusCode;
+	// console.log ("Server_Error routeMessage: ", routeMessage);
+	// console.log ("Server_Error routeDetails: ", routeDetails);
+	// console.log ("Server_Error routeStatusCode: ", routeStatusCode);
+	// console.log ("Server_Error message: ", message);
+	// console.log ("Server_Error details: ", details);
+	// console.log ("Server_Error statusCode: ", statusCode);
+
+	const errMessage:string | undefined = message ? message : routeMessage as string | undefined;
+	const errDetails:string[] | undefined = details ? details : routeDetails as string[] | undefined;
+	const errCode:string | undefined = statusCode ? statusCode : routeStatusCode as string | undefined;
 
     return(
 		<>
@@ -33,7 +39,7 @@ export default function Server_Error({error = undefined}:Server_ErrorProps) {
 					</Typography>
 				</CardContent> 
 
-				{errDetails.length > 0 &&
+				{errDetails &&
 					<>
 						<CardHeader title='Stack trace' titleTypographyProps={{ variant: 'h4', color: 'teal', marginTop: 3}} />
 						<CardContent>

@@ -11,8 +11,6 @@ export default function NotFound (): JSX.Element {
 		`Error: ${message as string}` : 
 		"Oops we've looked everywhere and can't find what you're looking for";
 
-	console.log(`Server_Error - message: ${message}`);
-
     return (
 		<Card sx={{ width: '80%', marginTop: 17, marginLeft:'10%', marginRight:'10%'}}>
 			<CardHeader 

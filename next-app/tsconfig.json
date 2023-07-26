@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,8 +14,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-	"sourceMap": true
+    "types": ["cypress"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/[CompanyHeaderDetails].tsx", "pages/_app.tsx", "pages/companyDetails/index.tsx",".eslintrc.js"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/[CompanyHeaderDetails].tsx", "pages/_app.tsx", "pages/companyDetails/index.tsx",".eslintrc.js", "cypress.config.js", "cypress/plugins/index.js"],
+  "exclude": ["node_modules", "db-scripts.ts"]
 }

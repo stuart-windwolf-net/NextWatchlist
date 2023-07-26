@@ -34,8 +34,6 @@ export default function CompanyDetails():JSX.Element {
 	const responsiveBodyTextVariant = smallestText ? 'body2' : 'body1';
 
 	useEffect(() => {
-		console.log("In CompanyDetail useEffect code: ", code);
-		
 		if (code){
 			setLoading(true);
 
@@ -45,13 +43,9 @@ export default function CompanyDetails():JSX.Element {
 						setCompany(data);
 						setLoading(false);
 						setError(undefined);
-
-						console.log("In CompanyDetail useEffect data: ", data);
 					},
 					(error:AxiosError) => {
 						if (error !== null && error !== undefined) {
-							console.log("Error in companyDetails useEffect error: ", error.response?.data);
-							
 							setLoading(false);
 							setCompany(null);
 							
@@ -98,7 +92,6 @@ export default function CompanyDetails():JSX.Element {
 		}
 	}
 
-	//console.log("Company: ", company);
 	if (isLoading) {
 		return <LoadingComponent message="Loading ..." />;
 	} else if (company) {
@@ -204,6 +197,7 @@ export default function CompanyDetails():JSX.Element {
 	}
 	if (error) {
 		return <Server_Error error={{statusCode:"404", message:`${error}`, details:undefined}} />;
+		//return <Server_Error />;
 	} else {
 		return (<div>ERROR</div>);
 		//return <Server_Error error={{statusCode:"404", message:`Error loading details for company ${code}`, details:undefined}} />;

@@ -6,6 +6,12 @@ export const fakeArrayOf1:Array<CompanyHeader> = new Array<CompanyHeader> (
     { id: 1, symbol: "CPU", sector: "Finance", dateListed: "1984", displayName: "Computershare"},
 )
 
+export const fakeArrayOf3:Array<CompanyHeader> = new Array<CompanyHeader> (
+    { id: 1, symbol: "CPU", sector: "Industry", dateListed: "1994", displayName: "COMPUTERSHARE LIMITED"},
+    { id: 2, symbol: "ASX", sector: "Finance", dateListed: "1998", displayName: "ASX LIMITED"},
+    { id: 3, symbol: "ANZ", sector: "Finance", dateListed: "1969", displayName: "ANZ GROUP HOLDINGS LIMITED"}
+)
+
 export const fakeArrayOf20:Array<CompanyHeader> = new Array<CompanyHeader>(
     { id: 1, symbol: "AAT", sector: "Finance", dateListed: "1984", displayName: "NonComputershare1"},
     { id: 2, symbol: "AAA", sector: "Finance", dateListed: "1984", displayName: "NonComputershare2"},

@@ -7,7 +7,6 @@ export default async function handler(
     res: NextApiResponse
 ) {
     try {
-        console.log("REVALIDATE_HANDLER request query.path:", req.query.path);
         if (req.query.path !== undefined && req.query.path !== null && Array.isArray(req.query.path) === false) {
             const thePath: string = Array.isArray(req.query.path) ? req.query.path[0] : req.query.path;
             console.log(`REVALIDATE_HANDLER request query.path: '${thePath}'`);

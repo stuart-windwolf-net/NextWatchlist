@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Avatar, Box, Button, Card, CardActions, CardContent,  Stack,  useTheme,  Typography } from "@mui/material";
 import React, { SyntheticEvent } from "react";
-import link from "next/link";
+//import link from "next/link";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { CompanyHeader } from "../models/companyHeader";
 import EmptyWatchList from "./EmptyWatchList";
@@ -19,7 +19,7 @@ export default function CompanyHeaderList({headers}:CompanyHeaderProps) {
 		});
     }
 
-	console.log ("CompanyHeaderList Array.isArray(headers): ", Array.isArray(headers));
+	//console.log ("CompanyHeaderList Array.isArray(headers): ", Array.isArray(headers));
 
 	const theme = useTheme();
 	const smallestText = useMediaQuery(theme.breakpoints.down('sm'));
@@ -40,7 +40,7 @@ export default function CompanyHeaderList({headers}:CompanyHeaderProps) {
 
 	return (
 		<Box>
-			{ headers.map((companyHeader: CompanyHeader) => (
+			{ 	headers.map((companyHeader: CompanyHeader) => (
 					<Card 
 						key={companyHeader.symbol}
 						sx={{ 
@@ -71,8 +71,9 @@ export default function CompanyHeaderList({headers}:CompanyHeaderProps) {
 							justifyContent='flex-end' 
 							sx={{ width: '100%', marginRight: 2, marginBottom: 2}}
 						>
-							<Button 																	
-								component={link} 
+							<Button 	
+								id={ '-view-' + companyHeader.symbol + '-' }
+								
 								href={`/companyDetails?symbol=${companyHeader.symbol}`}  
 								variant='contained' 									
 								color='primary'
@@ -82,7 +83,8 @@ export default function CompanyHeaderList({headers}:CompanyHeaderProps) {
 							</Button>
 
 							<LoadingButton 									 
-								name={ companyHeader.id.toString() }
+								id={ '-delete-' + companyHeader.symbol + '-'}
+								
 								onClick={(e) => handleCompanyHeaderDelete(e, companyHeader.id)} 
 								variant='contained' 
 								color='error'

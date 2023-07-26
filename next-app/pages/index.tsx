@@ -5,8 +5,7 @@ import type { NextPage } from 'next';
 // import Box from '@mui/material/Box';
 import HomePage from './home-page';
 
-const Home: NextPage = () => {
-	console.log("In index (Home)")
+const Home: NextPage = () => {	
   return (
 	<>
 		<HomePage />

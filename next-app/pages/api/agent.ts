@@ -12,8 +12,6 @@ import Router from 'next/router';
 //     })
 // }
 
-//const router = useRouter();
-
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
 axios.interceptors.response.use(async response => {
@@ -50,9 +48,6 @@ axios.interceptors.response.use(async response => {
             break;
 
         case 404: 
-            console.log(`Error in agent - ${status}, ${data}`)
-            //Router.push({ pathname: '/404', query: { message: data, statusCode: '404' } });
-
             //Router.push('/404');  
             break;
 
@@ -61,18 +56,16 @@ axios.interceptors.response.use(async response => {
             break;            
 
         case 500:             
-            //router.push({pathname: "/losescreen", query: {somekey: "someValue" });
             console.log(`Error in agent - ${status}, ${data}`)
-            //Router.push({ pathname: '/Server_Error', query: { message: data } });
-
+            Router.push({ pathname: '/Server_Error', query: { routeMessage: data, routeDetails: undefined, routeStatusCode: '500' }});
             break;   
         default:
             console.log(`Error in agent - ${status}, ${data}`)
-            //Router.push( { pathname: '/Server_Error', query: { message: data }});           
+            Router.push({ pathname: '/Server_Error', query: { routeMessage: data, routeDetails: undefined, routeStatusCode: '500' }});           
 
     }
 
-    console.log ('In axios interceptor error: error.response.data: ', error.response.data);
+    //console.log ('In axios interceptor error: error.response.data: ', error.response.data);
 
     return Promise.reject(error);
 })
