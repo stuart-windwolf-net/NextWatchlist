@@ -35,20 +35,21 @@ dotnet run
 
 Using a 2nd terminal window restore build and run the User Interface:
 ``` bash
-cd .\client-app\
+cd .\next-app\
 npm install
+npm build
 npm start
 ```
 
 ## Usage
 
-At the Company Watchlist HOME PAGE or the Nav bar on top you may navigate to the list of watched ASX companies.
+At the Company Watchlist Nav bar on top you may navigate to the list of saved ASX companies.
 
 From the List of Watched Companies you can: 
-1.  View the list of stored companies (Watchlist).
-2.  "View" the latest ASX pricing information for that company.
-3.  "Delete" a company from your list of stored companies.
+1.  View the list of companies you have stored.
+2.  View the latest ASX pricing information for that company.
+3.  Delete a company from your list of stored companies.
 
 Using the Company Code button you can:
-1.  Add a new company to the list and immediately view it's pricing by enter an ASX ticker code that is not currently stored in your list.
-2.  Jump straight to viewing a company that is currently stored in your list.
+1.  Add a new company to the list and immediately view it's pricing by entering an ASX ticker code that is not currently stored in your list.
+2.  Jump straight to viewing the details of a company that is currently stored in your list.

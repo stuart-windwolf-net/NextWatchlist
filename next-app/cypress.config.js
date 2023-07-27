@@ -4,7 +4,7 @@ import { dbDelete, dbFill, dbReset } from "./cypress/db/utils/db-scripts";
 export default defineConfig({
   e2e: {
     video: false,
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on) {
       on('task', {
         log(message) {
           // cy.task("log", "my message");
